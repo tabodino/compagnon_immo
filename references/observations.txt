@@ -1,0 +1,79 @@
+Dataset vente immo 68
+---------------------
+
+- Le département 68 correspond au Haut Rhin. (2 premiers datasets en lien du projet)
+- les dates vont de 2019 à 2023
+- le dataset comprends:
+	-> 27737 lignes
+	-> 58 colonnes
+	-> 0 doublon
+	-> 28.68 % de manquants
+
+- Les premières visualisations montrent des outliers sur le champs "charges_copro" et des valeurs élevées pour "CODE_IRIS" 
+- Pour le champs "charges_copro" la médiane est à 1200 et la valeur aberrante est isolée (sûrement une erreur de saisie)
+- Il semble avoir une corrélation entre le prix d'un bien, la surface et le nombre de pièce.
+
+Dataset location immo 68
+------------------------
+
+- Le département 68 correspond au Haut Rhin. (2 premiers datasets en lien du projet)
+- les dates vont de 2019 à 2023
+- le dataset comprends:
+	-> 11702 lignes
+	-> 51 colonnes
+	-> 0 doublon
+	-> 29.69 % de manquants
+- Les premières visualisations montrent des outliers sur le champ "CODE_IRIS"
+
+- Le dataset de locations peut nous aider à comprendre comment mapper les données du dataset de ventes dans le dataset gouv. car il contient d'autres départements. Il sert de liaison. 
+
+
+Dataset data-gouv
+-----------------
+
+- Dans le dataset des valeurs foncières, dans la section département il n'y a pas ce département.
+- Dans le dataset des valeurs foncières, les colonnes des csv des départements sont les mêmes que les communes
+- les dates vont de 2019 à 2024
+- Les départements regroupent les données présentes dans la section communes
+- Le merge de tous les fichiers départements par année nous donne le même nombre de lignes que le merge des fichiers full.csv.gz. On peut donc se fier sur les fichiers full sans perte d'informations.
+
+- Les fichiers full.csv.gz regroupent toutes les données par année.
+- le dataset complet mergé sur tous les années comprends:
+	-> 20 195 667 lignes
+	-> 40 colonnes
+	-> 1302023 doublons
+	-> 49.06 % de manquants
+
+Les informations diffusées sont issues des mutations publiées dans les services de la
+publicité foncière de l’ensemble du territoire de la France métropolitaine, à l’exception
+des départements du Bas-Rhin, du Haut-Rhin et de Moselle – les données les concernant
+relèvent du « livre foncier » et ne sont pas mobilisées dans la base nationale des
+documents patrimoniaux (BNDP) –, ainsi que des départements et régions d’outre-mer,
+excepté Mayotte.
+
+Nous pouvons trouver ces informations ici: 
+- Le site officiel du Livre Foncier : L’EPELFI (Établissement Public d'Exploitation du Livre Foncier Informatisé) 
+- Le système AMALFI
+- Ministère de la Justice 
+
+Ces données ne sont pas accessibles publiquement.
+
+Terminologies
+-------------
+
+ - le code FANTOIR facilite la gestion des adresses et leur standardisation à l'échelle nationale.
+ - WGS-84 est le système de référence utilisé dans les GPS (Global Positioning System), ce qui en fait une norme incontournable pour la géolocalisation et la cartographie.
+
+- un IRIS (Îlot Regroupé pour l’Information Statistique) est une unité géographique utilisée pour des analyses statistiques et démographiques détaillées. Créé par l'INSEE (Institut National de la Statistique et des Études Économiques), un IRIS constitue la division infra-communale la plus fine pour diffuser des données publiques tout en respectant la confidentialité.
+
+- GRD_QUART : Ce champ représente le numéro de grand quartier. Il est composé du code du département, suivi du numéro de commune ou du numéro d'arrondissement municipal (pour des villes comme Paris, Lyon et Marseille), et enfin du numéro du grand quartier
+
+- UU2010 : Ce champ désigne les unités urbaines selon le découpage de 2010. Il inclut un code du département (ou "00" pour les unités urbaines qui s'étendent sur plusieurs départements ou au-delà des frontières), suivi d'un code indiquant la taille de la population, puis d'un numéro d'ordre à l'intérieur de cette taille
+
+
+Conclusion
+--------------
+
+Nous cherchons à prédire une variable quantitative et notre variable cible est une valeur quantitative. Nous avons un problème de régression.
+
+Pour le dataset de location la variable cible n'est pas présente, nous cherchons le prix de location au m². 

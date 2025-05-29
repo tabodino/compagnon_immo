@@ -1,0 +1,10 @@
+https://www.insee.fr/fr/metadonnees/definition/c1523
+
+https://apimo.net/fr/api/r%C3%A9f%C3%A9rentiel/
+
+https://datafoncier.cerema.fr/dv3f
+
+https://datafoncier.cerema.fr/
+
+https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/details/calcul-devolutions-de-loyers-a-partir-des-donnees-des-observatoires-locaux-des-loyers-methode-et-resultats
+
