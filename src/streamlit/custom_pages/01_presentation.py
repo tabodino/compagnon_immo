@@ -42,7 +42,7 @@ st.markdown(
     <span>Prix, surface, nb de pièces, type, position géographique (France des 5 dernières années) :</span>
     <ul>
         <li>
-            <a href="https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres-geolocalisees/">demandes-de-valeurs-foncieres-geolocalisees></a>
+            <a href="https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres-geolocalisees/">demandes-de-valeurs-foncieres-geolocalisees</a>
         </li>
     </ul>
 """,

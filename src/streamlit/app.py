@@ -92,3 +92,4 @@ st.sidebar.write("---")
 
 st.sidebar.subheader("👨‍💼 Mentor")
 st.sidebar.text("Kylian SANTOS")
+

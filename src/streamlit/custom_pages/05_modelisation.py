@@ -7,15 +7,24 @@ st.header("✨ Modélisation")
 
 st.subheader("Modélisation du prix au m²")
 
+st.write("#### Choix des métriques")
+
+st.write("> - **MAE :** Interprétation intuitive de l'erreur moyenne \n"
+         "> - **RMSE :** Interprétation des erreurs avec écarts importants \n"
+         "> - **R2 :** Interprétation de la proportion de variance expliquée\n"
+         "> - **MAPE :** Comparaison de la performance entre différents modèles\n"
+)
+
 st.write("#### Modèles baseline")
 
 st.write("Premières itérations sur les modèles suivants:")
 st.write(
-    "> - LinearRegression  \n"
-    "> - Ridge  \n"
-    "> - Lasso  \n"
-    "> - RandomForest  \n"
-    "> - XGBoost"
+    "> - **LinearRegression :** Modèle simple et rapide, utile comme point de référence. \n"
+    "> - **Ridge :** Ajoute une pénalisation des grands coefficients, utile pour éviter le surapprentissage en présence de multicolinéarité  \n"
+    "> - **Lasso :** Pemet d'éliminer les variables non pertinentes \n"
+    "> - **RandomForest :** Modèle d'ensemble robuste qui capture bien les relations complexes \n"
+    "> - **DecisionTree :** Efficace pour capter les intéractions non linéaires et données hétérogènes  \n"
+    "> - **XGBoost :** Modèle de gradient boosting performant et rapide, efficace sur les données avec des relations complexes"
 )
 
 data = {
@@ -46,7 +55,7 @@ st.write(
 
 st.write("#### Recherche optimisations")
 
-st.write("> Réduction de dimension PCA")
+st.write("> **Réduction de dimension PCA**")
 
 data_pca = {
     "Modèle": [
@@ -188,7 +197,7 @@ st.write(
     "restent pas acceptables."
 )
 
-st.write("> RandomSearchCV & GridSearchCV")
+st.write("> **RandomSearchCV & GridSearchCV**")
 
 st.write(
     "Le modèle GradientBossting est assez lent surtout "
@@ -217,7 +226,7 @@ data = {
 df = pd.DataFrame(data)
 st.dataframe(df)
 
-st.write("> Bagging et Stacking")
+st.write("> **Bagging et Stacking**")
 st.write("Le test a été effectué sur les modèles Gradient Boosting, et XGBoost.")
 data = {
     "Méthode": ["Bagging", "Bagging", "Stacking", "Stacking"],
@@ -379,6 +388,10 @@ st.subheader("Modélisation évolution des prix au m²")
 
 st.write("#### Etude série temporelle")
 
+st.write("Exemple pour le département 75")
+
+st.image(f"{IMG_FOLDER}evolution_prix_dep_75.jpg", use_container_width=True)
+
 st.write("#### Modèles baseline")
 
 st.write(
@@ -442,7 +455,7 @@ st.write(
 )
 
 data = {
-    "Modèle": ["Bidirectional GRU + LSTM"],
+    "Modèle": ["GRU + LSTM"],
     "Scaler": ["Robust"],
     "MAE": [124336.189735],
     "RMSE": [185566.537182],
@@ -514,64 +527,6 @@ data = {
 
 st.dataframe(pd.DataFrame(data))
 
-st.write("#### Meilleures performances")
-st.code(
-    """
-model_rnn = Sequential([
-    Input(shape=(timesteps, X_train_scaled.shape[1])),
-
-    Bidirectional(LSTM(128, return_sequences=True, activation="tanh")),
-    Dropout(0.2),
-
-    Bidirectional(GRU(64, return_sequences=True, activation="tanh")),
-    Dropout(0.2),
-
-    GRU(32, return_sequences=False, activation="tanh"),
-    Dropout(0.2),
-
-    Dense(16, activation="relu"),
-    Dense(1)
-])
-"""
-)
-
-st.code(
-    """
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
-┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
-│ bidirectional (Bidirectional)        │ (None, 12, 256)             │         161,792 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dropout (Dropout)                    │ (None, 12, 256)             │               0 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ bidirectional_1 (Bidirectional)      │ (None, 12, 128)             │         123,648 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dropout_1 (Dropout)                  │ (None, 12, 128)             │               0 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ gru_1 (GRU)                          │ (None, 32)                  │          15,552 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dropout_2 (Dropout)                  │ (None, 32)                  │               0 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dense (Dense)                        │ (None, 16)                  │             528 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dense_1 (Dense)                      │ (None, 1)                   │              17 │
-└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
-
- Total params: 301,537 (1.15 MB)
-
- Trainable params: 301,537 (1.15 MB)
-"""
-)
-
-data = {
-    "Modèle": ["RNN"],
-    "Scaler": ["Robust"],
-    "MAE": [126459.016422],
-    "RMSE": [174482.246974],
-    "R²": [0.371986],
-}
-
-st.dataframe(pd.DataFrame(data))
 
 st.write(
     "Les résultats restent modestes. Pour améliorer "

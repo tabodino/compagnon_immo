@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
-import plotly.graph_objects as go
-import plotly.subplots as sp
 from sklearn.preprocessing import StandardScaler
 
 
@@ -117,8 +114,6 @@ fig, ax = plt.subplots(figsize=(20, 12))
 sns.heatmap(num_cols.corr(), annot=True, cmap="coolwarm")
 plt.title("Corrélations entre variables numériques (data-gouv)", fontsize=16)
 st.pyplot(fig)
-
-st.image(f"{IMG_FOLDER}repartition_mutation_type.jpg", use_container_width=True)
 
 st.image(f"{IMG_FOLDER}evolution_des_prix.jpg", use_container_width=True)
 
