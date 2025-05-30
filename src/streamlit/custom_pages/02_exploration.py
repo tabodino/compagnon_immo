@@ -92,7 +92,9 @@ def get_dataframe_info(df):
 @st.cache_data
 def load_data_dvf():
     url = "https://wesy.fr/raw/dvf_sample.csv"
-    return pd.read_csv(url, index_col='Unnamed: 0')
+    dvf_df = pd.read_csv(url, index_col='Unnamed: 0')
+    st.session_state["datasets"]['dvf'] = dvf_df
+    return dvf_df
 
 def create_dafaframe_by_type(df, type):
     """

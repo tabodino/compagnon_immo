@@ -105,8 +105,9 @@ st.write("---")
 
 st.subheader("Dataset Valeurs foncières :")
 # optimisation ressources computationnelles (2024 seulement)
-output_path = "data/raw/full_2024.csv.gz"
-dvf_df_2024 = pd.read_csv(output_path, low_memory=False, nrows=50000)
+
+dvf_df_2024 = st.session_state["datasets"]["sales_df"]
+# dvf_df_2024 = pd.read_csv(output_path, low_memory=False, nrows=50000)
 num_cols = dvf_df_2024.select_dtypes(include=["number"])
 cat_cols = dvf_df_2024.select_dtypes(include=["object"])
 
