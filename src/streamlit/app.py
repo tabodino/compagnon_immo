@@ -49,6 +49,10 @@ def load_dataframe(url, index_col, sep=";", nrows=100):
         st.error("Erreur lors du chargement des données")
         return None, None
 
+@st.cache_data
+def load_data_dvf():
+    url = "https://wesy.fr/raw/dvf_sample.csv"
+    return pd.read_csv(url, index_col='Unnamed: 0')
 
 with st.spinner("Chargement des datasets en cache..."):
     cached_datasets = {
@@ -57,6 +61,7 @@ with st.spinner("Chargement des datasets en cache..."):
     }
 
 st.session_state["datasets"] = {name: df.copy() for name, df in cached_datasets.items()}
+st.session_state["datasets"]['dvf_df'] = load_data_dvf()
 
 st.title("🏠 Compagnon Immo")
 st.write("---")

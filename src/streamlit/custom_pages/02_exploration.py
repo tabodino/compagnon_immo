@@ -89,13 +89,6 @@ def get_dataframe_info(df):
     return dataset_info
 
 
-@st.cache_data
-def load_data_dvf():
-    url = "https://wesy.fr/raw/dvf_sample.csv"
-    dvf_df = pd.read_csv(url, index_col='Unnamed: 0')
-    st.session_state["datasets"]['dvf'] = dvf_df
-    return dvf_df
-
 def create_dafaframe_by_type(df, type):
     """
     Returns a DataFrame containing the columns of the provided DataFrame
@@ -173,8 +166,7 @@ st.info(
 )
 
 
-dvf_df = load_data_dvf()
-
+dvf_df = st.session_state["datasets"]["dvf_df"]
 st.dataframe(dvf_df)
 dvf_infos = get_dataframe_info(dvf_df)
 dvf_infos.loc["Nombre de lignes", "Value"] = DVF_NB_ROWS
