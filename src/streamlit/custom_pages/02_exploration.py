@@ -1,4 +1,3 @@
-import pyarrow as pa
 import streamlit as st
 import pandas as pd
 import requests
@@ -10,7 +9,7 @@ RENTALS_68_URL = "https://raw.githubusercontent.com/klopstock-dviz/immo_vis/mast
 RAW_DATA_PATH = "data/raw/"
 # Evite un long traitement (temps chargement du dataset complet)
 DVF_DUPLICATED = 1302023
-
+DVF_NB_ROWS = 2195790
 
 @st.cache_data
 def load_dataframe(url, index_col, sep=";", nrows=100):
@@ -90,6 +89,11 @@ def get_dataframe_info(df):
     return dataset_info
 
 
+@st.cache_data
+def load_data_dvf():
+    url = "https://wesy.fr/raw/dvf_sample.csv"
+    return pd.read_csv(url, index_col='Unnamed: 0')
+
 def create_dafaframe_by_type(df, type):
     """
     Returns a DataFrame containing the columns of the provided DataFrame
@@ -166,15 +170,12 @@ st.info(
     "afin de constituer l'ensemble complet des données."
 )
 
-dvf_file = f"{RAW_DATA_PATH}full_years.csv.gz"
-nb_duplicated = 0
-with open(dvf_file, "rb") as f:
-    nb_rows = sum(1 for _ in f) - 1
 
-dvf_df = pd.read_csv(dvf_file, nrows=100)
+dvf_df = load_data_dvf()
+
 st.dataframe(dvf_df)
 dvf_infos = get_dataframe_info(dvf_df)
-dvf_infos.loc["Nombre de lignes", "Value"] = nb_rows
+dvf_infos.loc["Nombre de lignes", "Value"] = DVF_NB_ROWS
 dvf_infos.loc["Nombre de doublons", "Value"] = DVF_DUPLICATED
 st.dataframe(dvf_infos)
 
@@ -195,6 +196,46 @@ st.warning(
     "contraintes de ressources computationnelles lors de son chargement."
 )
 
+st.write("---")
+
+st.write("### Automatisation de la récupération des données")
+st.write(
+    "Afin de simplifier l'extraction et l'organisation des données "
+    "issues de **data.gouv**, nous avons mis en place un **ETL** structuré. "
+    "Grâce à une série de **scripts Python**, il est possible de générer "
+    "des datasets adaptés à nos besoins, que ce soit par année, par "
+    "département ou sous forme globale. Cette solution nous permet "
+    "également de surmonter certaines contraintes de ressources "
+    "computationnelles liées au traitement de volumes de données "
+    "trop importants."
+)
+
+st.markdown(
+    """
+- **Création dataset global (toutes les années et tous les départements):**
+
+```
+python src/data/make_dataset.py all
+```
+                   
+- **Création dataset par année (tous les départements pour une année spécifique):**
+```
+python src/data/make_dataset.py year --year 2024
+```
+
+- **Création dataset par département (toutes les années pour un département spécifique):**
+
+```
+python src/data/make_dataset.py dep_all --dep 75
+```
+
+- **Création dataset spécifique (un seul département pour une année):**
+
+```
+python src/data/make_dataset.py dep --dep 75 --year 2024
+```
+"""
+)
 
 st.write("---")
 st.write("### Recherche d'outliers")

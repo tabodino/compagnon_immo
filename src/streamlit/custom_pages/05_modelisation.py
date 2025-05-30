@@ -9,10 +9,11 @@ st.subheader("Modélisation du prix au m²")
 
 st.write("#### Choix des métriques")
 
-st.write("> - **MAE :** Interprétation intuitive de l'erreur moyenne \n"
-         "> - **RMSE :** Interprétation des erreurs avec écarts importants \n"
-         "> - **R2 :** Interprétation de la proportion de variance expliquée\n"
-         "> - **MAPE :** Comparaison de la performance entre différents modèles\n"
+st.write(
+    "> - **MAE :** Interprétation intuitive de l'erreur moyenne \n"
+    "> - **RMSE :** Interprétation des erreurs avec écarts importants \n"
+    "> - **R2 :** Interprétation de la proportion de variance expliquée\n"
+    "> - **MAPE :** Comparaison de la performance entre différents modèles\n"
 )
 
 st.write("#### Modèles baseline")
@@ -533,4 +534,16 @@ st.write(
     "la capture des fluctuations par nos modèles, notre "
     "dataset devrait être enrichi ou s'appuyer sur des séries "
     "temporelles plus étendues."
+)
+
+st.write("---")
+st.write("### Axes d'amélioration")
+st.write(
+    "Nous pouvons encore enrichir notre dataset, "
+    "en particulier avec des variables comme le trimestre, la saison et "
+    "la zone géographique (province, Île-de-France). Cependant, après réflexion, "
+    "il apparaît que l'inclusion du champ '*valeur foncière*' ne constitue pas "
+    "une option optimale.  \n\n"
+    "Avec plus de temps, il serait pertinent de revoir notre approche en "
+    "l'excluant afin d'obtenir une analyse plus cohérente et pertinente."
 )
