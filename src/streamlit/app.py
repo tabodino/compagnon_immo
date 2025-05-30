@@ -61,7 +61,7 @@ with st.spinner("Chargement des datasets en cache..."):
     }
 
 st.session_state["datasets"] = {name: df.copy() for name, df in cached_datasets.items()}
-st.session_state["datasets"]['dvf_df'] = load_data_dvf()
+st.session_state["datasets"]["dvf_df"] = load_data_dvf()
 
 st.title("🏠 Compagnon Immo")
 st.write("---")

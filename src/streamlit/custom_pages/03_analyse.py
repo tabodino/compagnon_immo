@@ -16,7 +16,7 @@ st.subheader("Dataset Ventes 68 :")
 
 sales_df = st.session_state["datasets"]["sales_df"]
 
-num_cols = sales_df.select_dtypes(include="number").columns
+num_cols = sales_df.select_dtypes("number").columns
 scaler = StandardScaler()
 scaled_data = scaler.fit_transform(sales_df[num_cols])
 scaled_df = pd.DataFrame(scaled_data, columns=num_cols)
@@ -53,7 +53,10 @@ st.subheader("Dataset Locations 68 :")
 
 rentals_df = st.session_state["datasets"]["rentals_df"]
 
-num_cols = rentals_df.select_dtypes(include="number").columns
+num_cols = rentals_df.select_dtypes("number").columns
+drop_cols = ['charges_copro', 'parking', 'prix_maison', 'prix_terrain']
+num_cols = num_cols.difference(drop_cols)
+num_cols = list(num_cols)
 scaler = StandardScaler()
 scaled_data = scaler.fit_transform(rentals_df[num_cols])
 scaled_df = pd.DataFrame(scaled_data, columns=num_cols)
@@ -104,15 +107,8 @@ st.pyplot(fig)
 st.write("---")
 
 st.subheader("Dataset Valeurs foncières :")
-# optimisation ressources computationnelles (2024 seulement)
-dvf_df_2024 = st.session_state["datasets"]["dvf_df"]
-num_cols = dvf_df_2024.select_dtypes(include=["number"])
-cat_cols = dvf_df_2024.select_dtypes(include=["object"])
 
-fig, ax = plt.subplots(figsize=(20, 12))
-sns.heatmap(num_cols.corr(), annot=True, cmap="coolwarm")
-plt.title("Corrélations entre variables numériques (data-gouv)", fontsize=16)
-st.pyplot(fig)
+st.image(f"{IMG_FOLDER}heatmap_data_gouv.jpg", use_container_width=True)
 
 st.image(f"{IMG_FOLDER}evolution_des_prix.jpg", use_container_width=True)
 
