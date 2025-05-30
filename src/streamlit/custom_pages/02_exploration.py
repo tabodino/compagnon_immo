@@ -93,6 +93,29 @@ def get_dataframe_info(df):
     return dataset_info
 
 
+def create_dafaframe_by_type(df, type):
+    """
+    Returns a DataFrame containing the columns of the provided DataFrame
+    that match the specified data type.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        The DataFrame from which to extract columns.
+    type:  string [object | number]
+
+    Returns
+    -------
+    pandas.DataFrame
+        A DataFrame containing the columns of the provided DataFrame
+        that match the specified data type.
+    """
+    type_vars = df.select_dtypes(include=type)
+    dtype_info_df = pd.DataFrame(
+        {"colonne": type_vars.columns, "type": type_vars.dtypes}
+    ).set_index("colonne")
+    return dtype_info_df
+
 st.header("🔍 Exploration des données")
 
 st.write("")
@@ -108,13 +131,11 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.write("Variables quantitatives")
-    df_num = sales_df.select_dtypes('number')
-    st.dataframe(df_num)
+    st.dataframe(create_dafaframe_by_type(sales_df, "number"))
 
 with col2:
     st.write("Variables qualitatives")
-    df_cat = sales_df.select_dtypes('object')
-    st.dataframe(df_cat)
+    st.dataframe(create_dafaframe_by_type(sales_df, "object"))
 
 st.write("---")
 
@@ -129,13 +150,11 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.write("Variables quantitatives")
-    df_num = rentals_df.select_dtypes('number')
-    st.dataframe(df_num)
+    st.dataframe(create_dafaframe_by_type(rentals_df, "number"))
 
 with col2:
     st.write("Variables qualitatives")
-    df_cat = rentals_df.select_dtypes('object')
-    st.dataframe(df_cat)
+    st.dataframe(create_dafaframe_by_type(rentals_df, "object"))
 
 st.write("Les données analysées couvrent la période de 2019 à 2023.")
 
@@ -150,7 +169,7 @@ st.info(
 )
 
 
-dvf_df = st.session_state["datasets"]["dvf_df"]
+dvf_df = load_data_dvf()
 st.dataframe(dvf_df)
 dvf_infos = get_dataframe_info(dvf_df)
 dvf_infos.loc["Nombre de lignes", "Value"] = DVF_NB_ROWS
@@ -161,13 +180,11 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.write("Variables quantitatives")
-    df_num = dvf_df.select_dtypes('number')
-    st.dataframe(df_num)
+    st.dataframe(create_dafaframe_by_type(dvf_df, "number"))
 
 with col2:
     st.write("Variables qualitatives")
-    df_cat = dvf_df.select_dtypes('object')
-    st.dataframe(df_cat)
+    st.dataframe(create_dafaframe_by_type(dvf_df, "object"))
 
 st.write("Les données analysées couvrent la période de 2020 à 2024.")
 
