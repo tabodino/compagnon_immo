@@ -9,7 +9,7 @@ RENTALS_68_URL = "https://raw.githubusercontent.com/klopstock-dviz/immo_vis/mast
 RAW_DATA_PATH = "data/raw/"
 # Evite un long traitement (temps chargement du dataset complet)
 DVF_DUPLICATED = 1302023
-DVF_NB_ROWS = 2195790
+DVF_NB_ROWS = 20195667
 
 @st.cache_data
 def load_dataframe(url, index_col, sep=";", nrows=100):
