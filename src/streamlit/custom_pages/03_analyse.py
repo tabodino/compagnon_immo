@@ -57,41 +57,41 @@ st.write("")
 
 st.subheader("Dataset Ventes 68 :")
 
-sales_df, nb_rows = load_dataframe(SALES_68_URL, index_col="idannonce", nrows=-1)
+# sales_df, nb_rows = load_dataframe(SALES_68_URL, index_col="idannonce", nrows=-1)
 
 
-num_cols = sales_df.select_dtypes(include="number").columns
-scaler = StandardScaler()
-scaled_data = scaler.fit_transform(sales_df[num_cols])
-scaled_df = pd.DataFrame(scaled_data, columns=num_cols)
+# num_cols = sales_df.select_dtypes(include="number").columns
+# scaler = StandardScaler()
+# scaled_data = scaler.fit_transform(sales_df[num_cols])
+# scaled_df = pd.DataFrame(scaled_data, columns=num_cols)
 
 
-# Matrice de corrélation de certaines variables numériques
-fig, ax = plt.subplots(figsize=(10, 5))
-sns.heatmap(
-    sales_df[
-        [
-            "etage",
-            "surface",
-            "surface_terrain",
-            "nb_pieces",
-            "prix_bien",
-            "prix_maison",
-            "prix_terrain",
-            "mensualiteFinance",
-            "balcon",
-            "eau",
-            "bain",
-            "places_parking",
-            "annee_construction",
-            "prix_m2_vente",
-        ]
-    ].corr(),
-    annot=True,
-    cmap="coolwarm",
-)
-plt.title("Corrélations entre certaines variables numériques")
-st.pyplot(fig)
+# # Matrice de corrélation de certaines variables numériques
+# fig, ax = plt.subplots(figsize=(10, 5))
+# sns.heatmap(
+#     sales_df[
+#         [
+#             "etage",
+#             "surface",
+#             "surface_terrain",
+#             "nb_pieces",
+#             "prix_bien",
+#             "prix_maison",
+#             "prix_terrain",
+#             "mensualiteFinance",
+#             "balcon",
+#             "eau",
+#             "bain",
+#             "places_parking",
+#             "annee_construction",
+#             "prix_m2_vente",
+#         ]
+#     ].corr(),
+#     annot=True,
+#     cmap="coolwarm",
+# )
+# plt.title("Corrélations entre certaines variables numériques")
+# st.pyplot(fig)
 
 st.write(
     "On peut noter que la variable 'prix_bien' n'est pas totalement corrélée avec 'prix_maison' et 'prix_terrain'. \
@@ -249,37 +249,37 @@ st.write("---")
 
 st.subheader("Dataset Locations 68 :")
 
-rentals_df, nb_rows = load_dataframe(RENTALS_68_URL, index_col="idannonce", nrows=-1)
+# rentals_df, nb_rows = load_dataframe(RENTALS_68_URL, index_col="idannonce", nrows=-1)
 
-num_cols = rentals_df.select_dtypes(include="number").columns
-scaler = StandardScaler()
-scaled_data = scaler.fit_transform(rentals_df[num_cols])
-scaled_df = pd.DataFrame(scaled_data, columns=num_cols)
+# num_cols = rentals_df.select_dtypes(include="number").columns
+# scaler = StandardScaler()
+# scaled_data = scaler.fit_transform(rentals_df[num_cols])
+# scaled_df = pd.DataFrame(scaled_data, columns=num_cols)
 
-# Matrice de corrélation de certaines variables numériques
-fig, ax = plt.subplots(figsize=(10, 5))
-sns.heatmap(
-    rentals_df[
-        [
-            "etage",
-            "surface",
-            "surface_terrain",
-            "nb_pieces",
-            "prix_bien",
-            "balcon",
-            "eau",
-            "bain",
-            "places_parking",
-            "annee_construction",
-        ]
-    ].corr(),
-    annot=True,
-    cmap="coolwarm",
-)
-plt.title("Corrélations entre certaines variables numériques")
-st.pyplot(fig)
+# # Matrice de corrélation de certaines variables numériques
+# fig, ax = plt.subplots(figsize=(10, 5))
+# sns.heatmap(
+#     rentals_df[
+#         [
+#             "etage",
+#             "surface",
+#             "surface_terrain",
+#             "nb_pieces",
+#             "prix_bien",
+#             "balcon",
+#             "eau",
+#             "bain",
+#             "places_parking",
+#             "annee_construction",
+#         ]
+#     ].corr(),
+#     annot=True,
+#     cmap="coolwarm",
+# )
+# plt.title("Corrélations entre certaines variables numériques")
+# st.pyplot(fig)
 
-st.write("---")
+# st.write("---")
 
 # Distribution des variables quantitatives
 html_path = "reports/figures/dist_numnorm_locations_68_box.html"
