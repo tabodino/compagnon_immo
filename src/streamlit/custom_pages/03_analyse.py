@@ -24,6 +24,15 @@ st.image(f"{IMG_FOLDER}boxplot_ventes_68.jpg", use_container_width=True)
 
 st.image(f"{IMG_FOLDER}heatmap_ventes_68.jpg", use_container_width=True)
 
+html_path = "reports/figures/dist_numnorm_ventes_68_box.html"
+
+try:
+    with open(html_path, "r", encoding="utf-8") as f:
+        html_content = f.read()
+    components.html(html_content, height=600, scrolling=True)
+except FileNotFoundError:
+    st.error(f"Le fichier HTML n'a pas été trouvé à l'emplacement : {html_path}")
+
 st.write("---")
 
 st.subheader("Dataset Locations 68 :")
