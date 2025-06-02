@@ -24,16 +24,16 @@ st.image(f"{IMG_FOLDER}boxplot_ventes_68.jpg", use_container_width=True)
 
 st.image(f"{IMG_FOLDER}heatmap_ventes_68.jpg", use_container_width=True)
 
-html_path = "http://www.wesy.fr/raw/dist_numnorm_ventes_68_box.html"
+# html_path = "http://www.wesy.fr/raw/dist_numnorm_ventes_68_box.html"
 
-try:
-    response = requests.get(html_path)
-    response.raise_for_status()
-    html_content = response.text
+# try:
+#     response = requests.get(html_path)
+#     response.raise_for_status()
+#     html_content = response.text
 
-    components.html(html_content, height=600, scrolling=True)
-except requests.exceptions.RequestException as e:
-    st.error(f"Erreur lors du chargement du fichier HTML : {e}")
+#     components.html(html_content, height=600, scrolling=True)
+# except requests.exceptions.RequestException as e:
+#     st.error(f"Erreur lors du chargement du fichier HTML : {e}")
 
 st.write("---")
 
