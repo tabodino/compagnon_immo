@@ -2,14 +2,14 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
-import plotly.graph_objects as go
-import plotly.subplots as sp
-import os
-from sklearn.preprocessing import StandardScaler
-import streamlit.components.v1 as components
-import requests
-from io import StringIOimport streamlit as st
+# import plotly.express as px
+# import plotly.graph_objects as go
+# import plotly.subplots as sp
+# import os
+# from sklearn.preprocessing import StandardScaler
+# import streamlit.components.v1 as components
+# import requests
+# from io import StringIOimport streamlit as st
 
 
 IMG_FOLDER = "reports/figures/"
